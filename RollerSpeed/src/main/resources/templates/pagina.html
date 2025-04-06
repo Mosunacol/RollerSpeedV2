@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misión, Visión, Valores y Servicios - RollerSpeed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 60px;
+        }
+        .header-section {
+            background-color: #343a40;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .content-card {
+            border-left: 4px solid #ffc107;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .content-card-body {
+            padding: 1.5rem;
+        }
+        .section-title {
+            position: relative;
+            padding-left: 15px;
+        }
+        .section-title:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">RollerSpeed</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">
+                        Quienes Somos
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/pagina">Misión y Visión</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cursos</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="btn btn-warning" th:href="@{/login}">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Contenido Principal -->
+<div class="container">
+    <div class="header-section text-center rounded">
+        <h1 class="display-4">Nuestra Escuela</h1>
+        <p class="lead">Conoce los principios que nos guían</p>
+    </div>
+
+    <!-- Misión -->
+    <div class="card content-card">
+        <div class="content-card-body">
+            <h2 class="text-warning fw-bold section-title">MISIÓN</h2>
+            <p class="lead" th:text="${mision}"></p>
+        </div>
+    </div>
+
+    <!-- Visión -->
+    <div class="card content-card">
+        <div class="content-card-body">
+            <h2 class="text-warning fw-bold section-title">VISIÓN</h2>
+            <p class="lead" th:text="${vision}"></p>
+        </div>
+    </div>
+
+    <!-- Valores -->
+    <div class="card content-card">
+        <div class="content-card-body">
+            <h2 class="text-warning fw-bold section-title">VALORES</h2>
+            <p class="lead" th:text="${valores}"></p>
+        </div>
+    </div>
+
+    <!-- Servicios -->
+    <div class="card content-card">
+        <div class="content-card-body">
+            <h2 class="text-warning fw-bold section-title">SERVICIOS</h2>
+            <p class="lead" th:text="${servicios}"></p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

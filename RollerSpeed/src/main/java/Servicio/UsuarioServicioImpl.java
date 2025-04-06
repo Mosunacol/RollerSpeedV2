@@ -1,6 +1,5 @@
 package Iudigital.RollerSpeed.Servicio;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -39,15 +38,19 @@ public class UsuarioServicioImpl implements Iudigital.RollerSpeed.Servicio.Usuar
 
     @Override
     public Usuario registrarUsuario(UsuarioRegistroDTO registroDTO) {
-        Rol rolUser = rolRepositorio.findByNombre("ROLE_USER")
-                .orElseThrow(() -> new RuntimeException("Rol ROLE_USER no encontrado"));
+        String nombreRol = registroDTO.getRol();
+
+        Rol rolSeleccionado = rolRepositorio.findByNombre(nombreRol)
+                .orElseThrow(() -> new RuntimeException("Rol " + nombreRol + " no encontrado"));
+
         Usuario usuario = new Usuario(
                 registroDTO.getNombre(),
                 registroDTO.getApellido(),
                 registroDTO.getEmail(),
                 passwordEncoder.encode(registroDTO.getPassword()),
-                List.of(rolUser)
+                List.of(rolSeleccionado)
         );
+
         return usuarioRepositorio.save(usuario);
     }
 

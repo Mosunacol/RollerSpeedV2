@@ -1,4 +1,4 @@
-package Iudigital.RollerSpeed.seguridad;
+package Iudigital.RollerSpeed.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +16,17 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/index",
+                        .requestMatchers("/", "/index**",
                                 "/registro",
                                 "/login",
                                 "/css/**",
+                                "api/**",
+                                "/catalogo**",
                                 "/usuarios**",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html",
+                                "/doc",
                                 "/js/**").permitAll()
                         .anyRequest().permitAll()
                 )

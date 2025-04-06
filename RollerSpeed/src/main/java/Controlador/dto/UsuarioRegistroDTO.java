@@ -21,4 +21,8 @@ public class UsuarioRegistroDTO {
 
     @Size(min = 6, message = "La contraseña debe tener al menos 6 caracteres")
     private String password;
+
+    @NotBlank(message = "Debe seleccionar un rol")
+    private String rol; // Campo nuevo para el rol
+
 }
