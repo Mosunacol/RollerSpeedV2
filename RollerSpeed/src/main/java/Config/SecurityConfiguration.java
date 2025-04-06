@@ -17,6 +17,7 @@ public class SecurityConfiguration {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index**",
+                                "/registro**",
                                 "/registro",
                                 "/login",
                                 "/css/**",

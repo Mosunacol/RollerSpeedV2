@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import Iudigital.RollerSpeed.Modelo.Usuario;
 import Iudigital.RollerSpeed.Repositorio.RolRepositorio;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,20 +26,23 @@ public class UsuarioServicioImpl implements Iudigital.RollerSpeed.Servicio.Usuar
 
     private final UsuarioRepositorio usuarioRepositorio;
     private final BCryptPasswordEncoder passwordEncoder;
+    @Getter
     private final RolRepositorio rolRepositorio;
 
     @Autowired
     public UsuarioServicioImpl(UsuarioRepositorio usuarioRepositorio,
                                BCryptPasswordEncoder passwordEncoder,
-                               Iudigital.RollerSpeed.Repositorio.RolRepositorio rolRepositorio, RolRepositorio rolRepositorio1) {
+                               RolRepositorio rolRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
         this.passwordEncoder = passwordEncoder;
-        this.rolRepositorio = rolRepositorio1;
+        this.rolRepositorio = rolRepositorio;
     }
 
     @Override
     public Usuario registrarUsuario(UsuarioRegistroDTO registroDTO) {
-        String nombreRol = registroDTO.getRol();
+        System.out.println("ROL RECIBIDO DESDE EL FORMULARIO: '" + registroDTO.getRol() + "'");
+
+        String nombreRol = registroDTO.getRol().trim();
 
         Rol rolSeleccionado = rolRepositorio.findByNombre(nombreRol)
                 .orElseThrow(() -> new RuntimeException("Rol " + nombreRol + " no encontrado"));
@@ -108,7 +112,4 @@ public class UsuarioServicioImpl implements Iudigital.RollerSpeed.Servicio.Usuar
         return usuarioRepositorio.findAll();
     }
 
-    public RolRepositorio getRolRepositorio() {
-        return rolRepositorio;
-    }
 }
